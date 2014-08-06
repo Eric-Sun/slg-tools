@@ -133,8 +133,6 @@ public class Excel2XmlFileGemerator {
         File f2 = new File("/Users/sunbo/project/h13/slg/slg-config");
         Excel2XmlFileGemerator g = new Excel2XmlFileGemerator(f1, f2);
         g.generate();
-        ;
-
     }
 
 }
