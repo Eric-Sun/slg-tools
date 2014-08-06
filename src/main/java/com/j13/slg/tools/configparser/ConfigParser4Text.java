@@ -28,7 +28,7 @@ public class ConfigParser4Text implements ConfigParser {
             }
         });
         for (File inputFile : inputFiles) {
-            XmlFileGenerator g = new XmlFileGenerator(inputFile,outputFolder);
+            Dat2XmlFileGenerator g = new Dat2XmlFileGenerator(inputFile,outputFolder);
             g.generate();
         }
 

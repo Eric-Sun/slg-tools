@@ -16,14 +16,14 @@ import java.util.List;
  * Time: 下午2:20
  * To change this template use File | Settings | File Templates.
  */
-public class XmlFileGenerator {
+public class Dat2XmlFileGenerator {
 
     private String[] tabList = null;
     private List<String[]> dataList = new LinkedList<String[]>();
     private File inputFile = null;
     private File outputFolder = null;
 
-    public XmlFileGenerator(File inputFile, File outputFolder) throws IOException {
+    public Dat2XmlFileGenerator(File inputFile, File outputFolder) throws IOException {
         this.inputFile = inputFile;
         this.outputFolder = outputFolder;
     }
@@ -79,10 +79,10 @@ public class XmlFileGenerator {
                 Element e1 = new Element(fileName);
 
                 for (int i = 0; i < lines.length; i++) {
-                    if (lines.length != tabList.length)
+                    if (lines.length > tabList.length)
                         continue;
-                    Element e2 = new Element(tabList[i]);
-                    e2.setText(lines[i]);
+                    Element e2 = new Element(tabList[i].substring(0,1).toLowerCase()+tabList[i].substring(1));
+                    e2.setText(lines[i] == null ? "" : lines[i]);
                     e1.addContent(e2);
                 }
 
@@ -92,7 +92,7 @@ public class XmlFileGenerator {
             XMLOutputter out = new XMLOutputter();
             Format format = Format.getCompactFormat();
             format.setIndent("      ");
-            format.setEncoding("GB2312");
+            format.setEncoding("UTF-8");
             out.setFormat(format);
 
             FileWriter fw = new FileWriter(outputFile);
@@ -106,9 +106,9 @@ public class XmlFileGenerator {
 
 
     public static void main(String[] args) throws Exception {
-        File f1 = new File("/Users/sunbo/Downloads/conf/leaguebossreward.dat");
+        File f1 = new File("/Users/sunbo/project/h13/slg/slg-dat/a.dat");
         File f2 = new File("/Users/sunbo/project/h13/slg/slg-config");
-        XmlFileGenerator g = new XmlFileGenerator(f1, f2);
+        Excel2XmlFileGemerator g = new Excel2XmlFileGemerator(f1, f2);
         g.generate();
         ;
 
